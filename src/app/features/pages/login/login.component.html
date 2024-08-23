@@ -1,0 +1,24 @@
+<!-- src/app/features/pages/login/login.component.html -->
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Usuário</mat-label>
+      <input matInput formControlName="username" placeholder="Digite seu usuário">
+      <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+        Usuário é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="Digite sua senha">
+      <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        Senha é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="rememberMe">Manter Conectado</mat-checkbox>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+</div>

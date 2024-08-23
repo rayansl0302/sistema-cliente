@@ -1,1 +1,59 @@
-<p>listar-empresa-externa works!</p>
+<app-navbar></app-navbar>
+<div class="container">
+  <h2>Empresas Externas</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Filtro por Nome da Empresa</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let company">{{ company.id }}</td>
+    </ng-container>
+
+    <!-- Company Name Column -->
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome da Empresa</th>
+      <td mat-cell *matCellDef="let company">{{ company.companyName }}</td>
+    </ng-container>
+
+    <!-- Collaborators Count Column -->
+    <ng-container matColumnDef="collaboratorsCount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Colaboradores</th>
+      <td mat-cell *matCellDef="let company">
+        {{ company.collaboratorsCount }}
+      </td>
+    </ng-container>
+
+    <!-- Is Active Column -->
+    <ng-container matColumnDef="isActive">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ativo</th>
+      <td mat-cell *matCellDef="let company">
+        {{ company.isActive ? "Sim" : "Não" }}
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let company">
+        <button mat-button (click)="openEditDialog(company)">Editar</button>
+        <button mat-button color="warn" (click)="deleteCompany(company.id)">
+          Excluir
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

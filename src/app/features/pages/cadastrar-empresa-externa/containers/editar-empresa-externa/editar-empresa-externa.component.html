@@ -1,1 +1,42 @@
-<p>editar-empresa-externa works!</p>
+<div class="container">
+  <h1 mat-dialog-title>Editar Empresa Externa</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="editCompanyForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nome da Empresa</mat-label>
+        <input matInput formControlName="companyName" required>
+        <mat-error *ngIf="editCompanyForm.get('companyName')?.hasError('required')">
+          Nome da empresa é obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Quantidade de Colaboradores</mat-label>
+        <input matInput type="number" formControlName="collaboratorsCount" required>
+        <mat-error *ngIf="editCompanyForm.get('collaboratorsCount')?.hasError('required')">
+          Quantidade de colaboradores é obrigatória.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Última Submissão</mat-label>
+        <input matInput type="date" formControlName="lastSubmit">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Criado Em</mat-label>
+        <input matInput type="date" formControlName="createdAt" [readonly]="true">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Ativo</mat-label>
+        <mat-checkbox formControlName="isActive">Ativo</mat-checkbox>
+      </mat-form-field>
+
+      <div mat-dialog-actions>
+        <button mat-button (click)="onClose()">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>

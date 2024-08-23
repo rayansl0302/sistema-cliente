@@ -11,10 +11,10 @@ import { CadastrarEmpresaExternaComponent } from './features/pages/cadastrar-emp
 import { NavbarComponent } from './features/components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ListarEmpresaExternaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
 import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar-parceiro.component';
 import { EditarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/containers/editar-empresa-externa/editar-empresa-externa.component';
 import { EditarParceiroComponent } from './features/pages/cadastrar-parceiro/containers/editar-parceiro/editar-parceiro.component';
+import { ListarEmpresaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
 
 //Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,7 +28,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,10 +36,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     CadastrarParceiroComponent,
     CadastrarEmpresaExternaComponent,
     NavbarComponent,
-    ListarEmpresaExternaComponent,
     ListarParceiroComponent,
     EditarEmpresaExternaComponent,
     EditarParceiroComponent,
+    ListarEmpresaComponent,
   ],
   imports: [
     BrowserModule,

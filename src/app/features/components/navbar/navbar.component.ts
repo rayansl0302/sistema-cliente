@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CadastrarEmpresaExternaComponent } from '../../pages/cadastrar-empresa-externa/cadastrar-empresa-externa.component';
+import { CadastrarParceiroComponent } from '../../pages/cadastrar-parceiro/cadastrar-parceiro.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   username: string | null = '';
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router,public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.username = this.getUsernameFromCookie();
@@ -40,6 +43,18 @@ export class NavbarComponent implements OnInit {
   }
   deleteCookie(name: string): void {
     document.cookie = `${name}=; Max-Age=-99999999;`;
+  }
+
+  openCadastrarParceiros(): void {
+    this.dialog.open(CadastrarParceiroComponent, {
+      width: '800px'
+    });
+  }
+
+  openCadastrarEmpresaExterna(): void {
+    this.dialog.open(CadastrarEmpresaExternaComponent, {
+      width: '800px'
+    });
   }
 
   logout(): void {

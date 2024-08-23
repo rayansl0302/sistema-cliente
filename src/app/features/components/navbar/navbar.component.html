@@ -14,11 +14,10 @@
             Cadastrar
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/cadastrar-parceiros">Cadastrar Parceiros</a></li>
+            <li><a class="dropdown-item" (click)="openCadastrarParceiros()">Cadastrar Parceiros</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" routerLink="/cadastrar-empresas-externas">Cadastrar Empresas Externas</a></li>
+            <li><a class="dropdown-item" (click)="openCadastrarEmpresaExterna()">Cadastrar Empresas Externas</a></li>
           </ul>
-
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

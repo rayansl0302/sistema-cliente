@@ -30,7 +30,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Data de Criação</mat-label>
-      <input matInput formControlName="createdAt">
+      <input matInput formControlName="createdAt" [value]="createdAt?.value">
     </mat-form-field>
 
     <div mat-dialog-actions>

@@ -57,6 +57,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     HttpClientModule,
     ReactiveFormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { Partner } from '../../models/partner.model';
 import { ParceirosService } from '../../services/parceiros.service';
+import { EditarParceiroComponent } from '../cadastrar-parceiro/containers/editar-parceiro/editar-parceiro.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-listar-parceiro',
@@ -18,21 +20,22 @@ export class ListarParceiroComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private parceirosService: ParceirosService, private router: Router) {}
+  constructor(
+    private parceirosService: ParceirosService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadPartners();
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   loadPartners(): void {
     this.parceirosService.getAllPartners().subscribe(
       (partners: Partner[]) => {
         this.dataSource.data = partners;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       error => {
         console.error('Erro ao buscar parceiros', error);
@@ -45,12 +48,21 @@ export class ListarParceiroComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  editPartner(id: string): void {
-    this.router.navigate(['/edit', id]);
+  openEditDialog(partner: Partner): void {
+    const dialogRef = this.dialog.open(EditarParceiroComponent, {
+      width: '500px',
+      data: partner
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadPartners(); // Refresh the list if a partner was updated
+      }
+    });
   }
 
   deletePartner(id: string): void {
-    if (confirm('Você tem certeza de que deseja excluir este parceiro?')) {
+    if (confirm('Você tem certeza que deseja excluir este parceiro?')) {
       this.parceirosService.deletePartner(id).subscribe(
         () => {
           this.loadPartners();

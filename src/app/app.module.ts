@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarEmpresaExternaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
 import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar-parceiro.component';
+import { EditarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/containers/editar-empresa-externa/editar-empresa-externa.component';
+import { EditarParceiroComponent } from './features/pages/cadastrar-parceiro/containers/editar-parceiro/editar-parceiro.component';
 
 //Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,8 +24,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +39,8 @@ import { MatSortModule } from '@angular/material/sort';
     NavbarComponent,
     ListarEmpresaExternaComponent,
     ListarParceiroComponent,
+    EditarEmpresaExternaComponent,
+    EditarParceiroComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatTableModule,
     MatSortModule,
+    MatDialogModule,
     MatPaginatorModule,
     HttpClientModule,
     ReactiveFormsModule,

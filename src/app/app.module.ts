@@ -10,6 +10,9 @@ import { CadastrarParceiroComponent } from './features/pages/cadastrar-parceiro/
 import { CadastrarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/cadastrar-empresa-externa.component';
 import { NavbarComponent } from './features/components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ListarEmpresaExternaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
+import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar-parceiro.component';
 
 //Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,8 +21,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { ListarEmpresaExternaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
-import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar-parceiro.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    HttpClientModule,
     ReactiveFormsModule,
   ],
   providers: [],

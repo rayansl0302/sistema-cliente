@@ -53,7 +53,9 @@
       (page)="onPageChange($event)"
       showFirstLastButtons
     ></mat-paginator>
-    <button mat-raised-button (click)="shareLink()">Compartilhar Link</button>
+    <button mat-mini-fab color="primary" (click)="shareLink()" matTooltip="Compartilhar Link">
+      <mat-icon>share</mat-icon>
+    </button>
   </div>
 
 </div>

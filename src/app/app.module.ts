@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './features/pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './features/pages/login/login.component';
-import { CadastrarParceiroComponent } from './features/pages/cadastrar-parceiro/cadastrar-parceiro.component';
 import { CadastrarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/cadastrar-empresa-externa.component';
 import { NavbarComponent } from './features/components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +14,7 @@ import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar
 import { EditarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/containers/editar-empresa-externa/editar-empresa-externa.component';
 import { EditarParceiroComponent } from './features/pages/cadastrar-parceiro/containers/editar-parceiro/editar-parceiro.component';
 import { ListarEmpresaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
+import { CadastrarParceiroComponent } from './features/pages/cadastrar-parceiro/cadastrar-parceiro.component';
 
 //Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,6 +27,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -57,9 +61,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     HttpClientModule,
     ReactiveFormsModule,
-
+    MatChipsModule,
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

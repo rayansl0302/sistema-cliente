@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Partner } from '../../models/partner.model';
 
 @Component({
@@ -10,6 +12,7 @@ import { Partner } from '../../models/partner.model';
 })
 export class CadastrarParceiroComponent {
   parceiroForm: FormGroup;
+  separatorKeysCodes: number[] = [ENTER, COMMA]; // Configuração dos separadores
 
   constructor(
     private fb: FormBuilder,
@@ -26,21 +29,78 @@ export class CadastrarParceiroComponent {
     });
   }
 
-  get name() {
+  get name(): AbstractControl | null {
     return this.parceiroForm.get('name');
   }
 
-  get repositoryGit() {
+  get repositoryGit(): AbstractControl | null {
     return this.parceiroForm.get('repositoryGit');
   }
 
-  get urlDoc() {
+  get urlDoc(): AbstractControl | null {
     return this.parceiroForm.get('urlDoc');
   }
 
-  get createdAt() {
+  get createdAt(): AbstractControl | null {
     return this.parceiroForm.get('createdAt');
   }
+
+  get clients(): AbstractControl | null {
+    return this.parceiroForm.get('clients');
+  }
+
+  get projects(): AbstractControl | null {
+    return this.parceiroForm.get('projects');
+  }
+
+  addClient(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+  
+    if ((value || '').trim()) {
+      this.clients?.value.push(value.trim());
+      this.clients?.updateValueAndValidity();
+    }
+  
+    if (input) {
+      input.value = '';
+    }
+  }
+  
+  removeClient(client: string): void {
+    if (this.clients) {
+      const index = this.clients.value.indexOf(client);
+      if (index >= 0) {
+        this.clients.value.splice(index, 1);
+        this.clients.updateValueAndValidity();
+      }
+    }
+  }
+
+  addProject(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if (this.projects && (value || '').trim()) {
+      this.projects.value.push(value.trim());
+      this.projects.updateValueAndValidity();
+    }
+
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeProject(project: string): void {
+    if (this.projects) {
+      const index = this.projects.value.indexOf(project);
+      if (index >= 0) {
+        this.projects.value.splice(index, 1);
+        this.projects.updateValueAndValidity();
+      }
+    }
+  }
+
   applyDateTimeMask(event: any): void {
     let value = event.target.value.replace(/\D/g, '');
     if (value.length >= 4) {
@@ -61,10 +121,10 @@ export class CadastrarParceiroComponent {
     event.target.value = value;
     this.parceiroForm.get('lastSubmit')?.setValue(value);
   }
+
   onSubmit(): void {
     if (this.parceiroForm.valid) {
       const newPartner: Partner = this.parceiroForm.value;
-      // Aqui você pode enviar os dados para o serviço ou API
       console.log('Parceiro criado:', newPartner);
       this.dialogRef.close();
     }

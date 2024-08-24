@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Company } from '../../models/companies.model';
 import { EmpresaExternaService } from '../../services/empresa-externa.service';
 import { EditarEmpresaExternaComponent } from '../cadastrar-empresa-externa/containers/editar-empresa-externa/editar-empresa-externa.component';
@@ -16,6 +16,7 @@ import { EditarEmpresaExternaComponent } from '../cadastrar-empresa-externa/cont
 export class ListarEmpresaComponent implements OnInit {
   displayedColumns: string[] = ['id', 'companyName', 'collaboratorsCount', 'isActive', 'actions'];
   dataSource = new MatTableDataSource<Company>();
+  currentPage: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -23,11 +24,22 @@ export class ListarEmpresaComponent implements OnInit {
   constructor(
     private companiesService: EmpresaExternaService,
     private router: Router,
+    private route: ActivatedRoute,
     public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.loadCompanies();
+
+    // Obter parâmetros de consulta ao iniciar
+    this.route.queryParams.subscribe(params => {
+      const page = params['page'];
+      if (page) {
+        this.currentPage = +page; // Atualizar o índice da página
+        this.paginator.pageIndex = this.currentPage; // Definir o índice da página
+        this.paginator._changePageSize(this.paginator.pageSize); // Atualizar a tabela
+      }
+    });
   }
 
   loadCompanies(): void {
@@ -36,6 +48,7 @@ export class ListarEmpresaComponent implements OnInit {
         this.dataSource.data = companies;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.dataSource.paginator.length = companies.length; // Atualizar o comprimento total do paginator
       },
       error => {
         console.error('Erro ao buscar empresas', error);
@@ -46,7 +59,13 @@ export class ListarEmpresaComponent implements OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+      if (this.paginator) {
+      this.paginator.length = this.dataSource.filteredData.length; 
+      this.paginator.pageIndex = 0; // Reseta a página para a primeira ao aplicar o filtro
+    }
   }
+  
+  
 
   openEditDialog(company: Company): void {
     const dialogRef = this.dialog.open(EditarEmpresaExternaComponent, {
@@ -72,5 +91,26 @@ export class ListarEmpresaComponent implements OnInit {
         }
       );
     }
+  }
+
+  onPageChange(event: any): void {
+    this.currentPage = event.pageIndex;
+    this.updateUrl();
+  }
+
+  updateUrl(): void {
+    const url = this.router.createUrlTree([], {
+      queryParams: { page: this.currentPage },
+      relativeTo: this.route
+    });
+    history.replaceState({}, '', url.toString());
+  }
+
+  shareLink(): void {
+    const page = this.currentPage;
+    const shareableLink = `${window.location.origin}/empresas-externas?page=${page}`;
+    navigator.clipboard.writeText(shareableLink).then(() => {
+      alert('Link copiado para a área de transferência: ' + shareableLink);
+    });
   }
 }

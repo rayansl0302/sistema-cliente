@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>Cadastrar Parceiro</h1>
 <div mat-dialog-content>
   <form [formGroup]="parceiroForm" (ngSubmit)="onSubmit()">
+    <!-- Campos existentes -->
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
       <input matInput formControlName="name">
@@ -32,10 +33,38 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Data de Criação</mat-label>
-      <input matInput formControlName="lastSubmit" [value]="createdAt?.value" placeholder="AAAA-MM-DD HH:mm:ss" mask="0000-00-00 00:00:00">
+      <input matInput formControlName="lastSubmit" [value]="createdAt?.value" placeholder="AAAA-MM-DD HH:mm:ss" (input)="applyDateTimeMask($event)">
     </mat-form-field>
 
-    <!-- Adicione campos para clients e projects se necessário -->
+    <!-- Campo de chips para Clientes -->
+    <mat-form-field appearance="fill">
+      <mat-label>Clientes</mat-label>
+      <mat-chip-grid #chipGridClients aria-label="Adicionar clientes">
+        <mat-chip-row *ngFor="let client of clients?.value || []" (removed)="removeClient(client)">
+          {{ client }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="Adicionar cliente..." [matChipInputFor]="chipGridClients" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addClient($event)">
+      </mat-chip-grid>
+    </mat-form-field>
+    
+
+   <!-- Campo de chips para Projects -->
+<mat-form-field appearance="fill">
+  <mat-label>Projetos</mat-label>
+  <mat-chip-grid #chipGridProjects aria-label="Adicionar projetos">
+    <mat-chip-row *ngFor="let project of projects?.value || []" (removed)="removeProject(project)">
+      {{ project }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+    <input placeholder="Adicionar projeto..." [matChipInputFor]="chipGridProjects" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addProject($event)">
+  </mat-chip-grid>
+</mat-form-field>
+
 
     <div mat-dialog-actions>
       <button mat-button (click)="onCancel()">Cancelar</button>

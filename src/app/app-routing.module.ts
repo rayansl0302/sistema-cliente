@@ -6,16 +6,18 @@ import { CadastrarParceiroComponent } from './features/pages/cadastrar-parceiro/
 import { CadastrarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/cadastrar-empresa-externa.component';
 import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar-parceiro.component';
 import { ListarEmpresaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
+import { AuthGuardService } from './features/services/authGuard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'cadastrar-parceiros', component: CadastrarParceiroComponent },
-  { path: 'cadastrar-empresas-externas', component: CadastrarEmpresaExternaComponent },
-  { path: 'empresas-externas', component: ListarEmpresaComponent },
-  { path: 'parceiros', component: ListarParceiroComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] }, // Protegendo a rota
+  { path: 'cadastrar-parceiros', component: CadastrarParceiroComponent, canActivate: [AuthGuardService] }, // Protegendo a rota
+  { path: 'cadastrar-empresas-externas', component: CadastrarEmpresaExternaComponent, canActivate: [AuthGuardService] }, // Protegendo a rota
+  { path: 'empresas-externas', component: ListarEmpresaComponent, canActivate: [AuthGuardService] }, // Protegendo a rota
+  { path: 'parceiros', component: ListarParceiroComponent, canActivate: [AuthGuardService] }, // Protegendo a rota
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

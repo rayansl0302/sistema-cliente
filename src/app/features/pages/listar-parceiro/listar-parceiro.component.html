@@ -1,6 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container">
   <h2>Nossos Parceiros</h2>
+  
+  
   <mat-form-field appearance="fill">
     <mat-label>Filtro por Nome</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" />
@@ -29,25 +31,29 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Ações</th>
       <td mat-cell *matCellDef="let partner">
-       <div class="d-flex">
-        <button mat-icon-button (click)="openEditDialog(partner)" matTooltip="Editar">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" (click)="deletePartner(partner.id)" matTooltip="Excluir">
-          <mat-icon>delete</mat-icon>
-        </button>
-       </div>
+        <div class="d-flex">
+          <button mat-icon-button (click)="openEditDialog(partner)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deletePartner(partner.id)" matTooltip="Excluir">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </td>
     </ng-container>
-    
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25]"
-    showFirstLastButtons
-  ></mat-paginator>
+  <div class="d-flex justify-content-between mt-4">
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="onPageChange($event)"
+      showFirstLastButtons
+    ></mat-paginator>
+    <button mat-raised-button (click)="shareLink()">Compartilhar Link</button>
+  </div>
+
 </div>

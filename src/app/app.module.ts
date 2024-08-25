@@ -7,10 +7,9 @@ import { HomeComponent } from './features/pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CadastrarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/cadastrar-empresa-externa.component';
 import { NavbarComponent } from './features/components/navbar/navbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListarParceiroComponent } from './features/pages/listar-parceiro/listar-parceiro.component';
-import { EditarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/containers/editar-empresa-externa/editar-empresa-externa.component';
 import { EditarParceiroComponent } from './features/pages/cadastrar-parceiro/containers/editar-parceiro/editar-parceiro.component';
 import { ListarEmpresaComponent } from './features/pages/listar-empresa-externa/listar-empresa-externa.component';
 import { CadastrarParceiroComponent } from './features/pages/cadastrar-parceiro/cadastrar-parceiro.component';
@@ -29,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { VueContainerComponent } from './features/vue/vue-container/vue-container.component';
 
 
 @NgModule({
@@ -39,9 +39,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     CadastrarEmpresaExternaComponent,
     NavbarComponent,
     ListarParceiroComponent,
-    EditarEmpresaExternaComponent,
     EditarParceiroComponent,
     ListarEmpresaComponent,
+    VueContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +59,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatPaginatorModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     MatChipsModule,
     MatSnackBarModule,
     MatTooltipModule

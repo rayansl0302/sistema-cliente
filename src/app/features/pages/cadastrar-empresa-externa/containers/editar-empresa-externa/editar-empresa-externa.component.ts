@@ -1,10 +1,17 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmpresaExternaService } from 'src/app/features/services/empresa-externa.service';
 import { Company } from 'src/app/features/models/companies.model';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, MatInputModule, MatFormFieldModule, MatButtonModule, ReactiveFormsModule, MatCheckboxModule],
   selector: 'app-editar-empresa-externa',
   templateUrl: './editar-empresa-externa.component.html',
   styleUrls: ['./editar-empresa-externa.component.less']

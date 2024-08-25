@@ -35,6 +35,7 @@ export class NavbarComponent implements OnInit {
     return null;
   }
 
+  
   updateNavbarWithUsername(): void {
     const usernameElement = document.getElementById('username');
     if (usernameElement && this.username) {

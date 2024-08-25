@@ -4,7 +4,7 @@
     <form [formGroup]="editCompanyForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
         <mat-label>Nome da Empresa</mat-label>
-        <input matInput formControlName="companyName" required>
+        <input matInput formControlName="companyName" required />
         <mat-error *ngIf="editCompanyForm.get('companyName')?.hasError('required')">
           Nome da empresa é obrigatório.
         </mat-error>
@@ -12,7 +12,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Quantidade de Colaboradores</mat-label>
-        <input matInput type="number" formControlName="collaboratorsCount" required>
+        <input matInput type="number" formControlName="collaboratorsCount" required />
         <mat-error *ngIf="editCompanyForm.get('collaboratorsCount')?.hasError('required')">
           Quantidade de colaboradores é obrigatória.
         </mat-error>
@@ -20,12 +20,12 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Última Submissão</mat-label>
-        <input matInput type="date" formControlName="lastSubmit">
+        <input matInput type="date" formControlName="lastSubmit" />
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Criado Em</mat-label>
-        <input matInput type="date" formControlName="createdAt" [readonly]="true">
+        <input matInput type="date" formControlName="createdAt" [readonly]="true" />
       </mat-form-field>
 
       <mat-form-field appearance="fill">

@@ -22,7 +22,9 @@ export class EditarParceiroComponent {
       name: [data.name, Validators.required],
       description: [data.description, Validators.required],
       repositoryGit: [data.repositoryGit],
-      urlDoc: [data.urlDoc]
+      urlDoc: [data.urlDoc],
+      clients: [[data.clients]],
+      projects: [[data.projects]],
     });
   }
 

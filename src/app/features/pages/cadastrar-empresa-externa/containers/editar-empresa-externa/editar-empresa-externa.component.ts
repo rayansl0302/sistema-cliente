@@ -21,8 +21,8 @@ export class EditarEmpresaExternaComponent {
     this.editCompanyForm = this.fb.group({
       companyName: [data.companyName, Validators.required],
       collaboratorsCount: [data.collaboratorsCount, Validators.required],
-      lastSubmit: [data.lastSubmit],  // Adicionado
-      createdAt: [data.createdAt],    // Adicionado
+      lastSubmit: [data.lastSubmit],
+      createdAt: [data.createdAt],
       isActive: [data.isActive]
     });
   }

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './features/pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './features/pages/login/login.component';
 import { CadastrarEmpresaExternaComponent } from './features/pages/cadastrar-empresa-externa/cadastrar-empresa-externa.component';
 import { NavbarComponent } from './features/components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +34,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
     CadastrarParceiroComponent,
     CadastrarEmpresaExternaComponent,

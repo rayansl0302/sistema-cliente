@@ -28,7 +28,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { VueContainerComponent } from './features/vue/vue-container/vue-container.component';
 
 
 @NgModule({
@@ -41,7 +40,6 @@ import { VueContainerComponent } from './features/vue/vue-container/vue-containe
     ListarParceiroComponent,
     EditarParceiroComponent,
     ListarEmpresaComponent,
-    VueContainerComponent,
   ],
   imports: [
     BrowserModule,
